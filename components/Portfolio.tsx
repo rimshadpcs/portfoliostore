@@ -217,16 +217,16 @@ const Portfolio = () => {
               </button>
               
               <div className="flex space-x-4 mt-6 justify-center">
-                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                <a href="https://github.com/rimshadpcs/" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
                   <Github size={24} />
                 </a>
-                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                <a href="https://www.linkedin.com/in/mohamed-rimshad/" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
                   <Linkedin size={24} />
                 </a>
-                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                <a href="https://www.instagram.com/mohamedrimshad/" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
                   <Instagram size={24} />
                 </a>
-                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                <a href="https://x.com/RIMSHADPCS" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
                   <Twitter size={24} />
                 </a>
               </div>
