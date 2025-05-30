@@ -2,65 +2,44 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/router';
 
-const JustLogPage = () => {
+const JustLogTerms = () => {
   const router = useRouter();
   
-  // Same theme system as your main portfolio
   const themes = {
     warmSand: {
       bg: "bg-[#f6f1eb]",
-      card: "bg-white", 
-      sidebar: "bg-[#f6f1eb]",
-      content: "bg-[#eee5db]",
       text: "text-[#3d3a38]",
       textLight: "text-[#6d635b]",
       accent: "bg-[#3d3a38]",
       accentText: "text-white",
-      name: "Warm Sand"
     },
     lavender: {
       bg: "bg-[#be95be]",
-      card: "bg-white", 
-      sidebar: "bg-[#be95be]",
-      content: "bg-[#d3b7d3]",
       text: "text-[#3d2f3d]",
       textLight: "text-[#614961]",
       accent: "bg-[#3d2f3d]",
       accentText: "text-white",
-      name: "Lavender Dreams"
     },
     ocean: {
       bg: "bg-[#71a3c1]",
-      card: "bg-white", 
-      sidebar: "bg-[#71a3c1]",
-      content: "bg-[#91b8d0]",
       text: "text-[#253543]",
       textLight: "text-[#3d5a71]",
       accent: "bg-[#253543]",
       accentText: "text-white",
-      name: "Ocean Blue"
     },
     mint: {
       bg: "bg-[#6dbfb8]",
-      card: "bg-white", 
-      sidebar: "bg-[#6dbfb8]",
-      content: "bg-[#90d0ca]",
       text: "text-[#243f3d]",
       textLight: "text-[#3d6b67]",
       accent: "bg-[#243f3d]",
       accentText: "text-white",
-      name: "Mint Green"
     },
     forest: {
       bg: "bg-[#75ba75]",
-      card: "bg-white", 
-      sidebar: "bg-[#75ba75]",
-      content: "bg-[#97cc97]",
       text: "text-[#243d24]",
       textLight: "text-[#3d6b3d]",
       accent: "bg-[#243d24]",
       accentText: "text-white",
-      name: "Forest Green"
     }
   };
 
@@ -79,127 +58,185 @@ const JustLogPage = () => {
   const theme = themes[activeTheme];
 
   const handleBackClick = () => {
-    router.push('/');
-  };
-
-  const handlePlaystoreClick = () => {
-    // Replace with your actual Play Store URL
-    window.open('https://play.google.com/store/apps/details?id=your.justlog.app', '_blank');
-  };
-
-  const handlePrivacyClick = () => {
-    router.push('/privacy/justlog');
-  };
-
-  const handleTermsClick = () => {
-    router.push('/terms/justlog');
+    router.push('/projects/justlog');
   };
 
   return (
     <div className={`min-h-screen ${theme.bg} ${theme.text} font-mono`}>
-      {/* Header with back button */}
+      {/* Header */}
       <div className={`p-4 md:p-6 border-b border-gray-200 ${theme.bg}/90 backdrop-blur-sm`}>
         <button
           onClick={handleBackClick}
           className="flex items-center hover:opacity-80 transition"
         >
           <ArrowLeft size={20} className="mr-2" />
-          <span>Home</span>
+          <span>Back to Just Log</span>
         </button>
       </div>
 
-      {/* Main Content */}
-      <div className="w-full max-w-2xl mx-auto px-3 sm:px-4 md:px-6 py-4 md:py-6">
-        {/* Hero Section - Logo and Title */}
-        <div className="text-center mb-6">
-          <div className="inline-block bg-green-100 rounded-xl p-4 sm:p-5 mb-4 shadow-md">
-            <img 
-              src="/images/gymloglogo.png" 
-              alt="Just Log" 
-              className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
-            />
-          </div>
+      {/* Content */}
+      <div className="max-w-4xl mx-auto p-6 md:p-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8">Terms of Service for Just Log</h1>
+        
+        <div className={`${theme.textLight} space-y-6 leading-relaxed`}>
+          <p><strong>Effective Date:</strong> {new Date().toLocaleDateString()}</p>
           
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Just Log</h1>
-          <p className={`${theme.textLight} text-sm sm:text-base md:text-lg leading-relaxed px-2`}>
-            Fitness Tracking Made Simple
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Agreement to Terms</h2>
+            <p>
+              By using Just Log, you agree to these Terms of Service. If you don't agree, please don't use our app.
+            </p>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Description of Service</h2>
+            <p>
+              Just Log is a minimalist workout logging application that helps users track their exercise routines, 
+              progress, and fitness data. The service is provided on a subscription basis.
+            </p>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Account Registration</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>You must provide a valid email address and name</li>
+              <li>You're responsible for maintaining the security of your account</li>
+              <li>You must be at least 13 years old to use Just Log</li>
+              <li>One account per person</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Subscription and Payment</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Just Log operates on a subscription model (£1.79/month or £17.99/year)</li>
+              <li>Subscriptions automatically renew unless cancelled</li>
+              <li>You can cancel your subscription at any time through your device's app store</li>
+              <li>Refunds are handled according to the app store's refund policy</li>
+              <li>Price changes will be communicated in advance</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Acceptable Use</h2>
+            <p>You agree to:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Use Just Log only for personal, non-commercial purposes</li>
+              <li>Provide accurate information</li>
+              <li>Not attempt to hack, reverse engineer, or compromise the app</li>
+              <li>Not create multiple accounts to circumvent limitations</li>
+              <li>Not use the app for any illegal purposes</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Your Content and Data</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>You retain ownership of all workout data you create</li>
+              <li>You're responsible for backing up important data</li>
+              <li>You can export your data at any time</li>
+              <li>When you delete your account, all data is permanently removed</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Service Availability</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>We strive for 99% uptime but can't guarantee uninterrupted service</li>
+              <li>We may temporarily suspend service for maintenance</li>
+              <li>We're not liable for data loss due to service interruptions</li>
+              <li>You should regularly export important data</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Limitations of Liability</h2>
+            <p>Just Log is provided "as is" without warranties. We're not liable for:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Any data loss or corruption</li>
+              <li>Interruptions to the service</li>
+              <li>Any indirect or consequential damages</li>
+              <li>Use of the app for medical or health decisions</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Health and Safety Disclaimer</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Just Log is for tracking purposes only, not medical advice</li>
+              <li>Consult healthcare professionals before starting exercise programs</li>
+              <li>We're not responsible for injuries related to your workouts</li>
+              <li>The app doesn't provide fitness or medical guidance</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Intellectual Property</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Just Log and its features are owned by us</li>
+              <li>You can't copy, modify, or distribute our app</li>
+              <li>You grant us permission to store and sync your workout data</li>
+              <li>We don't claim ownership of your personal workout data</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Privacy</h2>
+            <p>
+              Your privacy is important to us. Please review our Privacy Policy, which explains how we handle your information.
+            </p>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Termination</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>You can delete your account at any time</li>
+              <li>We may terminate accounts that violate these terms</li>
+              <li>Upon termination, your data will be deleted</li>
+              <li>These terms survive account termination where applicable</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Changes to Terms</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>We may update these terms occasionally</li>
+              <li>Changes will be posted in the app</li>
+              <li>Continued use after changes means you accept the updated terms</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Governing Law</h2>
+            <p>
+              These terms are governed by applicable law, without regard to conflict of law principles.
+            </p>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Contact Information</h2>
+            <p>
+              Questions about these terms? Contact us at: 
+              <a href="mailto:rimshadpcs@gmail.com" className={`ml-1 ${theme.text} hover:opacity-80 underline`}>
+                rimshadpcs@gmail.com
+              </a>
+            </p>
+          </section>
+
+          <section>
+            <h2 className={`text-xl font-bold ${theme.text} mb-3`}>Entire Agreement</h2>
+            <p>
+              These Terms of Service, along with our Privacy Policy, constitute the entire agreement between you and Just Log.
+            </p>
+          </section>
+
+          <p className="text-sm italic">
+            <em>Last updated: {new Date().toLocaleDateString()}</em>
           </p>
-        </div>
-
-        {/* Download Buttons Section */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-8 max-w-md mx-auto px-2">
-          <button
-            onClick={handlePlaystoreClick}
-            className={`${theme.accent} ${theme.accentText} py-2 px-4 rounded-md text-center font-medium hover:opacity-90 transition flex-1 text-xs sm:text-sm shadow-md`}
-          >
-            Download Android
-          </button>
-          
-          <button
-            className="bg-gray-300 text-gray-600 py-2 px-4 rounded-md text-center font-medium cursor-not-allowed flex-1 text-xs sm:text-sm"
-            disabled
-          >
-            iOS Coming Soon
-          </button>
-        </div>
-
-        {/* Divider */}
-        <div className={`border-t ${theme.textLight} border-opacity-30 mb-8 mx-2`}></div>
-
-        {/* About Section */}
-        <div className="mb-8 px-2">
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-center">About the app</h2>
-          <p className={`${theme.textLight} text-xs sm:text-sm md:text-base leading-relaxed text-center`}>
-            Just Log is a minimalist workout tracker built for people frustrated with bloated fitness apps. Workout logging is essential for progress
-            - you can't improve what you don't measure, and gym memory is notoriously unreliable. While competitors add social features, meal planning,
-            and AI coaches, Just Log focuses on one thing: efficient workout logging. The app includes 800+ exercises, custom routine creation, smart search,
-            PR tracking, and color-coded calendar history. Users can track weights, time-based exercises like planks, distance workouts, and daily bodyweight counters.
-            True to its minimalist philosophy, Just Log doesn't send notifications, collect unnecessary data, or interrupt your day - keeping everything simple and distraction-free.
-            Built with a "just log, no fluff" approach, it offers three clean themes and a freemium £1.79/month versus $9.99 for feature-heavy alternatives. Developed in public over 18 days with real gym testing,
-            every feature solves actual workout problems rather than adding complexity. The app targets serious lifters who want to track progress efficiently without fighting cluttered interfaces, annoying notifications, or paying for unused features.
-          </p>
-        </div>
-
-        {/* Divider */}
-        <div className={`border-t ${theme.textLight} border-opacity-30 mb-8 mx-2`}></div>
-
-        {/* Action Buttons Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 max-w-xl mx-auto px-2">
-          <button
-            onClick={handlePrivacyClick}
-            className={`${theme.accent} ${theme.accentText} py-1.5 sm:py-2 px-2 sm:px-3 rounded-md text-center font-medium hover:opacity-90 transition text-xs sm:text-sm`}
-          >
-            Privacy Policy
-          </button>
-          
-          <button
-            onClick={handleTermsClick}
-            className={`${theme.accent} ${theme.accentText} py-1.5 sm:py-2 px-2 sm:px-3 rounded-md text-center font-medium hover:opacity-90 transition text-xs sm:text-sm`}
-          >
-            Terms of Service
-          </button>
-
-          <a
-            href="https://tally.so/r/w4y9ao"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black py-1.5 sm:py-2 px-2 sm:px-3 rounded-md text-center font-medium hover:bg-gray-100 transition border border-gray-200 text-xs sm:text-sm"
-          >
-            Feedback
-          </a>
-          
-          <a
-            href="https://tally.so/r/wzoGEE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black py-1.5 sm:py-2 px-2 sm:px-3 rounded-md text-center font-medium hover:bg-gray-100 transition border border-gray-200 text-xs sm:text-sm"
-          >
-            Contact
-          </a>
         </div>
       </div>
     </div>
   );
 };
 
-export default JustLogPage;
+export default JustLogTerms;
