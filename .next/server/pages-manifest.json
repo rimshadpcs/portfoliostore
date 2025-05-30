@@ -1,11 +1,9 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/privacy/justlog": "pages/privacy/justlog.html",
-  "/projects/justlog": "pages/projects/justlog.html",
-  "/terms/justlog": "pages/terms/justlog.html",
-  "/projects/alifba": "pages/projects/alifba.html",
-  "/": "pages/index.html",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/": "pages/index.js",
+  "/projects/justlog": "pages/projects/justlog.js",
+  "/privacy/justlog": "pages/privacy/justlog.js",
+  "/terms/justlog": "pages/terms/justlog.js"
 }
