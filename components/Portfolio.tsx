@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter } from 'lucide-react';
 import { useRouter } from 'next/router';
 
-const JustLogPage = () => {
+const Portfolio = () => {
   const router = useRouter();
-  
-  // Same theme system as your main portfolio
+  // Theme definitions
   const themes = {
     warmSand: {
       bg: "bg-[#f6f1eb]",
@@ -63,143 +62,326 @@ const JustLogPage = () => {
       name: "Forest Green"
     }
   };
-
+  
+  // Project data
+  const projects = {
+    justlog: {
+      id: 'justlog',
+      name: 'Just Log',
+      logo: '/images/gymloglogo.png',
+      description: 'Fitness Tracking Made Simple',
+      about: 'Just Log is a simple and intuitive fitness tracking app that helps you log your workouts effortlessly. Built with a focus on simplicity, it allows you to track your progress without the complexity of other fitness apps. Whether you\'re a beginner or a seasoned athlete, Just Log adapts to your routine and helps you stay consistent with your fitness goals.',
+      playstoreUrl: 'https://play.google.com/store/apps/details?id=your.justlog.app',
+      privacyPolicy: '/privacy/justlog',
+      termsOfService: '/terms/justlog'
+    },
+    alifba: {
+      id: 'alifba',
+      name: 'Alifba',
+      logo: '/images/Alifba-profile-pic.png',
+      description: 'Learn Arabic the Smart Way',
+      about: 'Alifba is an innovative educational app designed to make learning Arabic engaging and effective. Using AI-powered lessons and interactive exercises, Alifba helps users of all ages master the Arabic alphabet, pronunciation, and basic vocabulary. The app combines traditional learning methods with modern technology to create a comprehensive Arabic learning experience.',
+      playstoreUrl: 'https://play.google.com/store/apps/details?id=your.alifba.app',
+      privacyPolicy: '/privacy/alifba',
+      termsOfService: '/terms/alifba'
+    }
+  };
+  
+  // Function to get a random theme
   const getRandomTheme = () => {
     const themeKeys = Object.keys(themes);
     const randomIndex = Math.floor(Math.random() * themeKeys.length);
     return themeKeys[randomIndex];
   };
-
+  
+  // Set initial theme to a random one
   const [activeTheme, setActiveTheme] = useState('warmSand');
   
+  // Change theme on page load/refresh
   useEffect(() => {
     setActiveTheme(getRandomTheme());
   }, []);
   
+  // Use the active theme
   const theme = themes[activeTheme];
-
-  const handleBackClick = () => {
-    router.push('/');
+  
+  // Count user interactions to change theme
+  const [interactionCount, setInteractionCount] = useState(0);
+  
+  // Change theme after certain number of interactions
+  useEffect(() => {
+    if (interactionCount > 0 && interactionCount % 3 === 0) {
+      setActiveTheme(getRandomTheme());
+    }
+  }, [interactionCount]);
+  
+  // Track user interactions
+  const handleInteraction = () => {
+    setInteractionCount(prev => prev + 1);
   };
 
-  const handlePlaystoreClick = () => {
-    // Replace with your actual Play Store URL
-    window.open('https://play.google.com/store/apps/details?id=your.justlog.app', '_blank');
-  };
-
-  const handlePrivacyClick = () => {
-    router.push('/privacy/justlog');
-  };
-
-  const handleTermsClick = () => {
-    router.push('/terms/justlog');
+  // Handle project click
+  const handleProjectClick = (projectId, e) => {
+    e.stopPropagation();
+    router.push(`/projects/${projectId}`);
   };
 
   return (
-    <div className={`min-h-screen ${theme.bg} ${theme.text} font-mono`}>
-      {/* Header with back button */}
-      <div className={`p-4 md:p-6 border-b border-gray-200 ${theme.bg}/90 backdrop-blur-sm`}>
-        <button
-          onClick={handleBackClick}
-          className="flex items-center hover:opacity-80 transition"
-        >
-          <ArrowLeft size={20} className="mr-2" />
-          <span>Home</span>
+    <div 
+      className={`flex flex-col min-h-screen ${theme.bg} ${theme.text} font-mono`}
+      onClick={handleInteraction} // Change theme on any click
+    >
+      {/* Navigation */}
+      <nav className={`p-4 md:p-6 flex items-center justify-between border-b border-gray-200 sticky top-0 ${theme.bg}/90 backdrop-blur-sm z-10`}>
+        <a href="#" className="text-xl font-bold hover:opacity-80 transition">rimshad.dev</a>
+        <div className="hidden md:flex">
+          <a href="#" className="ml-6 hover:opacity-80 transition">Home</a>
+          <a href="#about" className="ml-6 hover:opacity-80 transition">About</a>
+          <a href="#projects" className="ml-6 hover:opacity-80 transition">Projects</a>
+          <a href="#articles" className="ml-6 hover:opacity-80 transition">Articles</a>
+          
+          {/* Current Theme Indicator */}
+          <div className="ml-6 flex items-center">
+            <span className="text-sm">{theme.name}</span>
+            <div className={`ml-2 w-3 h-3 rounded-full ${theme.accent}`}></div>
+          </div>
+        </div>
+        <button className="md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
-      </div>
-
+      </nav>
+      
       {/* Main Content */}
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8">
-        {/* Hero Section - Logo and Title */}
-        <div className="text-center mb-8">
-          <div className="inline-block bg-green-100 rounded-2xl p-6 sm:p-8 mb-6 shadow-lg">
-            <img 
-              src="/images/gymloglogo.png" 
-              alt="Just Log" 
-              className="w-24 h-24 sm:w-32 sm:h-32 object-contain"
-            />
+      <main className="flex-grow">
+        <div className="flex flex-col md:flex-row">
+          {/* Left Side - Profile */}
+          <div className={`md:w-2/5 p-6 md:p-8 flex items-start justify-center ${theme.sidebar}`}>
+            <div className="max-w-md sticky top-24">
+              <div className="rounded-3xl overflow-hidden mb-6 bg-gray-100 max-w-xs mx-auto shadow-md">
+                <img 
+                  src="/images/profile.png" 
+                  alt="Profile" 
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+              
+              <h1 className="text-center text-3xl md:text-4xl font-bold mb-1">hi, i'm Rimshad</h1>
+              <p className="text-center mb-3">welcome to my app store</p>
+              
+              {/* Contact Button */}
+              <div className="mb-6">
+                <a 
+                  href="mailto:rimshadpcs@gmail.com" 
+                  className={`${theme.accent} ${theme.accentText} py-2 px-6 rounded-full text-sm flex items-center justify-center mx-auto w-auto hover:opacity-90 transition shadow`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 mr-2">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>Contact Me</span>
+                </a>
+              </div>
+              
+              <div id="about" className="mb-8">
+                <h2 className="text-xl font-bold mb-4 inline-flex items-center">
+                  <span className={`w-8 h-8 inline-flex items-center justify-center ${theme.accent} ${theme.accentText} rounded-full mr-2 text-sm`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </span>
+                  About Me
+                </h2>
+                <p className={`mb-4 ${theme.textLight} leading-relaxed`}>
+                    Hey there! I'm passionate about building AI agents and mobile apps that actually solve real problems. 
+                    I've spent the last few years crafting mobile apps and other applications - I build in public, 
+                    and I also work quietly behind the scenes on stealth projects.
+                </p>
+                <p className={`mb-4 ${theme.textLight} leading-relaxed`}>
+                    My journey started with a CS degree, followed by a Masters in Data Science and AI. I love blending 
+                    technical skills with creative thinking to create digital experiences that feel special.
+                    You'll also find me contributing to open source - it's my way of giving back to the 
+                    community that's taught me so much. And I've written a few articles along the way.
+                </p>
+              </div>
+              
+              <button 
+                className={`${theme.accent} ${theme.accentText} py-3 px-8 rounded-full text-lg flex items-center justify-between w-full mb-6 hover:opacity-90 transition shadow`}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent double counting the click
+                  setActiveTheme(getRandomTheme()); // Change theme on button click
+                }}
+              >
+                <span>Change Theme</span>
+                <span>→</span>
+              </button>
+              
+              <div className="flex space-x-4 mt-6 justify-center">
+                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                  <Github size={24} />
+                </a>
+                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                  <Linkedin size={24} />
+                </a>
+                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                  <Instagram size={24} />
+                </a>
+                <a href="#" className="rounded-full bg-gray-100 p-3 hover:bg-gray-200 transition shadow-sm">
+                  <Twitter size={24} />
+                </a>
+              </div>
+            </div>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">Just Log</h1>
-          <p className={`${theme.textLight} text-base sm:text-lg md:text-xl leading-relaxed px-4`}>
-            Fitness Tracking Made Simple
-          </p>
+          {/* Right Side - Projects and Articles */}
+          <div className={`md:w-3/5 ${theme.content} py-6 md:py-8 px-6 md:px-8`} id="projects">
+            <div className="max-w-3xl mx-auto">
+              {/* Projects Section */}
+              <h2 className="text-xl md:text-2xl font-bold mb-6 text-center" id="projects">
+                My Projects
+              </h2>
+              
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 mb-12">
+                {/* Project 1 - Alifba */}
+                <div className="text-center">
+                  <div 
+                    className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}
+                    onClick={(e) => handleProjectClick('alifba', e)}
+                  >
+                    <img 
+                      src="/images/Alifba-profile-pic.png" 
+                      alt="Alifba app" 
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <h3 className="font-medium text-sm">Alifba</h3>
+                </div>
+                
+                {/* Project 2 - Just Log (formerly GymLog) */}
+                <div className="text-center">
+                  <div 
+                    className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}
+                    onClick={(e) => handleProjectClick('justlog', e)}
+                  >
+                    <img 
+                      src="/images/gymloglogo.png" 
+                      alt="Just Log app" 
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <h3 className="font-medium text-sm">Just Log</h3>
+                </div>
+                
+                {/* Project 3 */}
+                <div className="text-center">
+                  <div className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}>
+                    <img 
+                      src="/images/newlogo.png" 
+                      alt="Alifba landing page" 
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <h3 className="font-medium text-sm">Alifba Landing</h3>
+                </div>
+
+                {/* Project Placeholder - For symmetrical grid */}
+                <div className="text-center">
+                  <div className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-1/3 h-1/3 text-gray-300">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </div>
+                  <h3 className="font-medium text-sm">Coming Soon</h3>
+                </div>
+              </div>
+              
+              {/* Articles Section */}
+              <h2 className="text-xl md:text-2xl font-bold mb-6 text-center" id="articles">
+                My Articles
+              </h2>
+              
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+                {/* Medium Profile */}
+                <div className="text-center col-span-3 md:col-span-4">
+                  <a href="https://medium.com/@rimshadmohamed" target="_blank" rel="noopener noreferrer">
+                    <div className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 h-16 flex items-center justify-start px-4`}>
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mr-3 shadow-sm">
+                        <svg viewBox="0 0 1043.63 592.71" className="w-6 h-6">
+                          <g data-name="Layer 2">
+                            <g data-name="Layer 1">
+                              <path d="M588.67 296.36c0 163.67-131.78 296.35-294.33 296.35S0 460 0 296.36 131.78 0 294.34 0s294.33 132.69 294.33 296.36M911.56 296.36c0 154.06-65.89 279-147.17 279s-147.17-124.94-147.17-279 65.88-279 147.16-279 147.17 124.9 147.17 279M1043.63 296.36c0 138-23.17 249.94-51.76 249.94s-51.75-111.91-51.75-249.94 23.17-249.94 51.75-249.94 51.76 111.9 51.76 249.94"></path>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                      <span className="font-medium text-sm">Follow me on Medium</span>
+                    </div>
+                  </a>
+                </div>
+                
+                {/* Article 1 */}
+                <div className="text-center">
+                  <a href="https://influencermagazine.uk/2023/10/faith-based-edtech-empowering-kids-and-parents/#google_vignette" target="_blank" rel="noopener noreferrer">
+                    <div className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}>
+                      <img
+                        src="/images/art1.png"
+                        alt="Faith-Based EdTech"
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                    <h3 className="font-medium text-sm">Faith-Based EdTech</h3>
+                  </a>
+                </div>
+                
+                {/* Article 2 */}
+                <div className="text-center">
+                  <a href="https://www.technology.org/2024/08/10/llm-and-ai-agents-next-frontier-in-edtech/" target="_blank" rel="noopener noreferrer">
+                    <div className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}>
+                      <img
+                        src="/images/art2.png"
+                        alt="AI agents"
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                    <h3 className="font-medium text-sm">LLM and AI Agents</h3>
+                  </a>
+                </div>
+                
+                {/* Article 3 */}
+                <div className="text-center">
+                  <a href="https://www.technology.org/2024/01/05/how-ai-is-helping-spirituality-and-religious-education-a-new-ai-field-in-the-growing/" target="_blank" rel="noopener noreferrer">
+                    <div className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}>
+                      <img
+                        src="/images/art3.png"
+                        alt="Faith-Based LLM"
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                    <h3 className="font-medium text-sm">AI in Religious Education</h3>
+                  </a>
+                </div>
+
+                {/* Article Placeholder */}
+                <div className="text-center">
+                  <div className={`rounded-2xl overflow-hidden ${theme.card} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 cursor-pointer mb-2 aspect-square flex items-center justify-center p-3`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-1/3 h-1/3 text-gray-300">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </div>
+                  <h3 className="font-medium text-sm">Coming Soon</h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Download Buttons Section */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-10 max-w-lg mx-auto px-4">
-          <button
-            onClick={handlePlaystoreClick}
-            className={`${theme.accent} ${theme.accentText} py-3 px-6 rounded-lg text-center font-medium hover:opacity-90 transition flex-1 text-sm sm:text-base shadow-lg`}
-          >
-            Download Android
-          </button>
-          
-          <button
-            className="bg-gray-300 text-gray-600 py-3 px-6 rounded-lg text-center font-medium cursor-not-allowed flex-1 text-sm sm:text-base"
-            disabled
-          >
-            iOS Coming Soon
-          </button>
-        </div>
-
-        {/* Divider */}
-        <div className={`border-t ${theme.textLight} border-opacity-30 mb-10 mx-4`}></div>
-
-        {/* About Section */}
-        <div className="mb-10 px-4">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">About the app</h2>
-          <p className={`${theme.textLight} text-sm sm:text-base md:text-lg leading-relaxed text-center`}>
-            Just Log is a minimalist workout tracker built for people frustrated with bloated fitness apps. Workout logging is essential for progress
-            - you can't improve what you don't measure, and gym memory is notoriously unreliable. While competitors add social features, meal planning,
-            and AI coaches, Just Log focuses on one thing: efficient workout logging. The app includes 800+ exercises, custom routine creation, smart search,
-            PR tracking, and color-coded calendar history. Users can track weights, time-based exercises like planks, distance workouts, and daily bodyweight counters.
-            True to its minimalist philosophy, Just Log doesn't send notifications, collect unnecessary data, or interrupt your day - keeping everything simple and distraction-free.
-            Built with a "just log, no fluff" approach, it offers three clean themes and a freemium £1.79/month versus $9.99 for feature-heavy alternatives. Developed in public over 18 days with real gym testing,
-            every feature solves actual workout problems rather than adding complexity. The app targets serious lifters who want to track progress efficiently without fighting cluttered interfaces, annoying notifications, or paying for unused features.
-          </p>
-        </div>
-
-        {/* Divider */}
-        <div className={`border-t ${theme.textLight} border-opacity-30 mb-10 mx-4`}></div>
-
-        {/* Action Buttons Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto px-4">
-          <button
-            onClick={handlePrivacyClick}
-            className={`${theme.accent} ${theme.accentText} py-2 sm:py-3 px-2 sm:px-4 rounded-lg text-center font-medium hover:opacity-90 transition text-xs sm:text-sm lg:text-base`}
-          >
-            Privacy Policy
-          </button>
-          
-          <button
-            onClick={handleTermsClick}
-            className={`${theme.accent} ${theme.accentText} py-2 sm:py-3 px-2 sm:px-4 rounded-lg text-center font-medium hover:opacity-90 transition text-xs sm:text-sm lg:text-base`}
-          >
-            Terms of Service
-          </button>
-
-          <a
-            href="https://tally.so/r/w4y9ao"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black py-2 sm:py-3 px-2 sm:px-4 rounded-lg text-center font-medium hover:bg-gray-100 transition border border-gray-200 text-xs sm:text-sm lg:text-base"
-          >
-            Feedback
-          </a>
-          
-          <a
-            href="https://tally.so/r/wzoGEE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black py-2 sm:py-3 px-2 sm:px-4 rounded-lg text-center font-medium hover:bg-gray-100 transition border border-gray-200 text-xs sm:text-sm lg:text-base"
-          >
-            Contact
-          </a>
-        </div>
-      </div>
+      </main>
+      
+      {/* Footer */}
+      <footer className={`p-6 text-center border-t border-gray-200 ${theme.bg}`}>
+        <p className={theme.textLight}>© {new Date().getFullYear()} Rimshad. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
 
-export default JustLogPage;
+export default Portfolio;
