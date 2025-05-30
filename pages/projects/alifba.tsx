@@ -83,8 +83,7 @@ const AlifbaPage = () => {
   };
 
   const handlePlaystoreClick = () => {
-    // Replace with your actual Play Store URL for Alifba
-    window.open('https://play.google.com/store/apps/details?id=your.alifba.app', '_blank');
+    window.open('https://play.google.com/store/apps/details?id=com.alifba.alifba', '_blank');
   };
 
   const handlePrivacyClick = () => {
@@ -98,88 +97,63 @@ const AlifbaPage = () => {
   return (
     <div className={`min-h-screen ${theme.bg} ${theme.text} font-mono`}>
       {/* Header with back button */}
-      <div className={`p-4 md:p-6 border-b border-gray-200 ${theme.bg}/90 backdrop-blur-sm`}>
+      <div className={`p-3 md:p-4 border-b border-gray-200 ${theme.bg}/90 backdrop-blur-sm`}>
         <button
           onClick={handleBackClick}
-          className="flex items-center hover:opacity-80 transition"
+          className="flex items-center hover:opacity-80 transition text-sm"
         >
-          <ArrowLeft size={20} className="mr-2" />
+          <ArrowLeft size={16} className="mr-2" />
           <span>Home</span>
         </button>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-2xl mx-auto p-6 md:p-8">
-        {/* App Icon and Title */}
-        <div className="text-center mb-8">
-          <div className="inline-block bg-blue-100 rounded-full p-8 mb-6">
-            <img 
-              src="/images/Alifba-profile-pic.png" 
-              alt="Alifba" 
-              className="w-32 h-32 object-contain"
-            />
+      <div className="w-full max-w-2xl mx-auto px-3 sm:px-4 md:px-6 py-4 md:py-6">
+        {/* Hero Section - Logo and Title */}
+        <div className="text-center mb-6">
+          <div className="inline-block bg-green-100 rounded-xl p-4 sm:p-5 mb-4 shadow-md">
+          <img
+  src="/images/Alifba-profile-pic.png"
+  alt="Alifba"
+  className="w-32 h-32 sm:w-32 sm:h-32 object-contain"
+/>
           </div>
           
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Alifba</h1>
-          <p className={`${theme.textLight} text-lg`}>Learn Arabic the Smart Way</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Alifba</h1>
+          <p className={`${theme.textLight} text-sm sm:text-base md:text-lg leading-relaxed px-2`}>
+           Duolingo for Muslim kids, making Islamic learning fun and easy for children aged 5-13.
+          </p>
         </div>
 
-        {/* Download Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          {/* Play Store Button */}
+        {/* Download Buttons Section */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-8 max-w-md mx-auto px-2">
           <button
             onClick={handlePlaystoreClick}
-            className={`${theme.accent} ${theme.accentText} py-3 px-6 rounded-lg text-center font-medium hover:opacity-90 transition flex-1`}
+            className={`${theme.accent} ${theme.accentText} py-2 px-4 rounded-md text-center font-medium hover:opacity-90 transition flex-1 text-xs sm:text-sm shadow-md`}
           >
             Download Android
           </button>
           
-          {/* App Store Button - Coming Soon */}
           <button
-            className="bg-gray-300 text-gray-600 py-3 px-6 rounded-lg text-center font-medium cursor-not-allowed flex-1"
+            className="bg-gray-300 text-gray-600 py-2 px-4 rounded-md text-center font-medium cursor-not-allowed flex-1 text-xs sm:text-sm"
             disabled
           >
             iOS Coming Soon
           </button>
         </div>
 
-        {/* About the App */}
-        <div className="mb-8">
-          <h2 className="text-xl font-bold mb-4">About the app</h2>
-          <p className={`${theme.textLight} leading-relaxed`}>
-            Alifba is an innovative educational app designed to make learning Arabic engaging and effective. 
-            Using AI-powered lessons and interactive exercises, Alifba helps users of all ages master the Arabic alphabet, 
-            pronunciation, and basic vocabulary. The app combines traditional learning methods with modern technology 
-            to create a comprehensive Arabic learning experience.
+        {/* Divider */}
+        <div className={`border-t ${theme.textLight} border-opacity-30 mb-8 mx-2`}></div>
+
+        {/* About Section */}
+        <div className="mb-8 px-2">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-center">About the app</h2>
+          <p className={`${theme.textLight} text-xs sm:text-sm md:text-base leading-relaxed text-center`}>
+          Alifba is like Duolingo for Muslim kids, making Islamic learning fun and easy for children aged 5-13. We've created a gentle, engaging way for young learners to discover their faith through bite-sized lessons, interactive games, and beautiful stories.
+Children love our friendly characters who guide them through each lesson, while parents appreciate how the app makes Islamic education feel natural and enjoyable. With fun quizzes, Arabic letter tracing, and narrated stories about prophets and Islamic history, kids can learn at their own pace in a safe, ad-free environment.
+Every lesson includes high-quality audio, so children can listen and learn even if they're still developing their reading skills. The app rewards progress with badges and achievements, making daily learning something kids actually look forward to. We've designed Alifba to help families share the beauty of Islam with their children in a way that feels modern, accessible, and genuinely engaging.
+Whether your child is just beginning to learn about their faith or wants to deepen their understanding, Alifba provides a warm, supportive space where Islamic education comes alive through interactive experiences that children love and parents trust.
           </p>
-        </div>
-
-        {/* Get Help Link */}
-        <div className="mb-8">
-          <a 
-            href="mailto:rimshadpcs@gmail.com" 
-            className={`${theme.textLight} hover:opacity-80 transition inline-flex items-center`}
-          >
-            Get Help 
-            <span className="ml-2">↗</span>
-          </a>
-        </div>
-
-        {/* Legal Links */}
-        <div className="flex flex-col sm:flex-row gap-4">
-          <button
-            onClick={handlePrivacyClick}
-            className={`${theme.accent} ${theme.accentText} py-2 px-4 rounded-lg text-center font-medium hover:opacity-90 transition flex-1`}
-          >
-            Privacy Policy
-          </button>
-          
-          <button
-            onClick={handleTermsClick}
-            className={`${theme.accent} ${theme.accentText} py-2 px-4 rounded-lg text-center font-medium hover:opacity-90 transition flex-1`}
-          >
-            Terms of Service
-          </button>
         </div>
       </div>
     </div>

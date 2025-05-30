@@ -2,5 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/projects/alifba": "pages/projects/alifba.js",
+  "/projects/justlog": "pages/projects/justlog.js",
   "/": "pages/index.js"
 }
