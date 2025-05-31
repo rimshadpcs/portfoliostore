@@ -84,7 +84,7 @@ const JustLogPage = () => {
 
   const handlePlaystoreClick = () => {
     // Replace with your actual Play Store URL
-    window.open('https://play.google.com/store/apps/details?id=your.justlog.app', '_blank');
+    window.open('https://play.google.com/store/apps/details?id=com.rimapps.justlog', '_blank');
   };
 
   const handlePrivacyClick = () => {
