@@ -86,12 +86,8 @@ const AlifbaPage = () => {
     window.open('https://play.google.com/store/apps/details?id=com.alifba.alifba', '_blank');
   };
 
-  const handlePrivacyClick = () => {
-    router.push('/privacy/alifba');
-  };
-
-  const handleTermsClick = () => {
-    router.push('/terms/alifba');
+  const handleReadMoreClick = () => {
+    window.open('https://alifba.xyz', '_blank');
   };
 
   return (
@@ -154,6 +150,19 @@ Children love our friendly characters who guide them through each lesson, while 
 Every lesson includes high-quality audio, so children can listen and learn even if they're still developing their reading skills. The app rewards progress with badges and achievements, making daily learning something kids actually look forward to. We've designed Alifba to help families share the beauty of Islam with their children in a way that feels modern, accessible, and genuinely engaging.
 Whether your child is just beginning to learn about their faith or wants to deepen their understanding, Alifba provides a warm, supportive space where Islamic education comes alive through interactive experiences that children love and parents trust.
           </p>
+        </div>
+
+        {/* Divider */}
+        <div className={`border-t ${theme.textLight} border-opacity-30 mb-8 mx-2`}></div>
+
+        {/* Read More Section */}
+        <div className="text-center px-2">
+          <button
+            onClick={handleReadMoreClick}
+            className={`${theme.accent} ${theme.accentText} py-2 px-6 rounded-md text-center font-medium hover:opacity-90 transition text-xs sm:text-sm shadow-md`}
+          >
+            Read More
+          </button>
         </div>
       </div>
     </div>

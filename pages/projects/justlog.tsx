@@ -87,12 +87,12 @@ const JustLogPage = () => {
     window.open('https://play.google.com/store/apps/details?id=com.rimapps.justlog', '_blank');
   };
 
-  const handlePrivacyClick = () => {
-    router.push('/privacy/justlog');
+  const handleAppStoreClick = () => {
+    window.open('https://apps.apple.com/us/app/workout-tracking-justlog/id6749898793', '_blank');
   };
 
-  const handleTermsClick = () => {
-    router.push('/terms/justlog');
+  const handleReadMoreClick = () => {
+    window.open('https://justlog.app', '_blank');
   };
 
   return (
@@ -136,10 +136,10 @@ const JustLogPage = () => {
           </button>
           
           <button
-            className="bg-gray-300 text-gray-600 py-3 px-6 rounded-lg text-center font-medium cursor-not-allowed flex-1 text-base"
-            disabled
+            onClick={handleAppStoreClick}
+            className={`${theme.accent} ${theme.accentText} py-3 px-6 rounded-lg text-center font-medium hover:opacity-90 transition flex-1 text-base shadow-lg`}
           >
-            iOS Coming Soon
+            Download iOS
           </button>
         </div>
 
@@ -163,39 +163,14 @@ const JustLogPage = () => {
         {/* Divider */}
         <div className={`border-t ${theme.textLight} border-opacity-30 mb-10`}></div>
 
-        {/* Action Buttons Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        {/* Read More Section */}
+        <div className="text-center">
           <button
-            onClick={handlePrivacyClick}
-            className={`${theme.accent} ${theme.accentText} py-3 px-4 rounded-lg text-center font-medium hover:opacity-90 transition text-sm lg:text-base`}
+            onClick={handleReadMoreClick}
+            className={`${theme.accent} ${theme.accentText} py-3 px-8 rounded-lg text-center font-medium hover:opacity-90 transition text-base shadow-lg`}
           >
-            Privacy Policy
+            Read More
           </button>
-          
-          <button
-            onClick={handleTermsClick}
-            className={`${theme.accent} ${theme.accentText} py-3 px-4 rounded-lg text-center font-medium hover:opacity-90 transition text-sm lg:text-base`}
-          >
-            Terms of Service
-          </button>
-
-          <a
-            href="https://tally.so/r/w4y9ao"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black py-3 px-4 rounded-lg text-center font-medium hover:bg-gray-100 transition border border-gray-200 text-sm lg:text-base"
-          >
-            Feedback
-          </a>
-          
-          <a
-            href="https://tally.so/r/wzoGEE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black py-3 px-4 rounded-lg text-center font-medium hover:bg-gray-100 transition border border-gray-200 text-sm lg:text-base"
-          >
-            Contact
-          </a>
         </div>
       </div>
     </div>
