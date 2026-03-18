@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 const AlifbaPage = () => {
   const router = useRouter();
   
   // Same theme system as your main portfolio
-  const themes = {
+  const themes: Record<string, any> = {
     warmSand: {
       bg: "bg-[#f6f1eb]",
       card: "bg-white", 
@@ -61,6 +62,17 @@ const AlifbaPage = () => {
       accent: "bg-[#243d24]",
       accentText: "text-white",
       name: "Forest Green"
+    },
+    midnight: {
+      bg: "bg-[#1a1a1a]",
+      card: "bg-[#2a2a2a]",
+      sidebar: "bg-[#1a1a1a]",
+      content: "bg-[#2a2a2a]",
+      text: "text-white",
+      textLight: "text-gray-400",
+      accent: "bg-white",
+      accentText: "text-black",
+      name: "Midnight"
     }
   };
 
@@ -86,14 +98,18 @@ const AlifbaPage = () => {
     window.open('https://play.google.com/store/apps/details?id=com.alifba.alifba', '_blank');
   };
 
+  const handleAppstoreClick = () => {
+    window.open('https://apps.apple.com/us/app/alifba-muslim-kids-learning/id6755977810', '_blank');
+  };
+
   const handleReadMoreClick = () => {
     window.open('https://alifba.xyz', '_blank');
   };
 
   return (
-    <div className={`min-h-screen ${theme.bg} ${theme.text} font-mono`}>
+    <div className={`min-h-screen ${theme.bg} ${theme.text} font-['Outfit',_sans-serif]`}>
       {/* Header with back button */}
-      <div className={`p-3 md:p-4 border-b border-gray-200 ${theme.bg}/90 backdrop-blur-sm`}>
+      <div className={`p-3 md:p-4 border-b border-white/20 ${theme.bg} z-20`}>
         <button
           onClick={handleBackClick}
           className="flex items-center hover:opacity-80 transition text-sm"
@@ -121,20 +137,27 @@ const AlifbaPage = () => {
           </p>
         </div>
 
-        {/* Download Buttons Section */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-8 max-w-md mx-auto px-2">
+        {/* Actions Section */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-8 max-w-lg mx-auto px-2 items-center justify-center">
+          <button
+            onClick={handleReadMoreClick}
+            className={`bg-transparent border-2 border-current ${theme.text} px-6 h-[40px] rounded-md font-medium hover:opacity-80 transition flex items-center justify-center text-xs sm:text-sm shadow-sm whitespace-nowrap`}
+          >
+            More Info
+          </button>
+
           <button
             onClick={handlePlaystoreClick}
-            className={`${theme.accent} ${theme.accentText} py-2 px-4 rounded-md text-center font-medium hover:opacity-90 transition flex-1 text-xs sm:text-sm shadow-md`}
+            className="hover:opacity-90 transition flex-shrink-0 flex items-center h-[40px]"
           >
-            Download Android
+            <img src="/images/google-play.png" alt="Get it on Google Play" className="h-full w-auto object-contain" />
           </button>
           
           <button
-            className="bg-gray-300 text-gray-600 py-2 px-4 rounded-md text-center font-medium cursor-not-allowed flex-1 text-xs sm:text-sm"
-            disabled
+            onClick={handleAppstoreClick}
+            className="hover:opacity-90 transition flex-shrink-0 flex items-center h-[40px]"
           >
-            iOS Coming Soon
+            <img src="/images/app-store.png" alt="Download on the App Store" className="h-full w-auto object-contain" />
           </button>
         </div>
 
@@ -152,18 +175,7 @@ Whether your child is just beginning to learn about their faith or wants to deep
           </p>
         </div>
 
-        {/* Divider */}
-        <div className={`border-t ${theme.textLight} border-opacity-30 mb-8 mx-2`}></div>
 
-        {/* Read More Section */}
-        <div className="text-center px-2">
-          <button
-            onClick={handleReadMoreClick}
-            className={`${theme.accent} ${theme.accentText} py-2 px-6 rounded-md text-center font-medium hover:opacity-90 transition text-xs sm:text-sm shadow-md`}
-          >
-            Read More
-          </button>
-        </div>
       </div>
     </div>
   );

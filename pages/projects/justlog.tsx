@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 const JustLogPage = () => {
   const router = useRouter();
   
   // Same theme system as your main portfolio
-  const themes = {
+  const themes: Record<string, any> = {
     warmSand: {
       bg: "bg-[#f6f1eb]",
       card: "bg-white", 
@@ -61,6 +62,17 @@ const JustLogPage = () => {
       accent: "bg-[#243d24]",
       accentText: "text-white",
       name: "Forest Green"
+    },
+    midnight: {
+      bg: "bg-[#1a1a1a]",
+      card: "bg-[#2a2a2a]",
+      sidebar: "bg-[#1a1a1a]",
+      content: "bg-[#2a2a2a]",
+      text: "text-white",
+      textLight: "text-gray-400",
+      accent: "bg-white",
+      accentText: "text-black",
+      name: "Midnight"
     }
   };
 
@@ -96,9 +108,9 @@ const JustLogPage = () => {
   };
 
   return (
-    <div className={`min-h-screen ${theme.bg} ${theme.text} font-mono`}>
+    <div className={`min-h-screen ${theme.bg} ${theme.text} font-['Outfit',_sans-serif]`}>
       {/* Header with back button */}
-      <div className={`p-4 md:p-6 border-b border-gray-200 ${theme.bg}/90 backdrop-blur-sm`}>
+      <div className={`p-4 md:p-6 border-b border-white/20 ${theme.bg} z-20`}>
         <button
           onClick={handleBackClick}
           className="flex items-center hover:opacity-80 transition"
@@ -126,20 +138,27 @@ const JustLogPage = () => {
           </p>
         </div>
 
-        {/* Download Buttons Section */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-10 max-w-lg mx-auto">
+        {/* Actions Section */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-10 max-w-2xl mx-auto items-center justify-center">
+          <button
+            onClick={handleReadMoreClick}
+            className={`bg-transparent border-2 border-current ${theme.text} px-8 h-[48px] rounded-lg font-medium hover:opacity-80 transition flex items-center justify-center text-base shadow-sm whitespace-nowrap`}
+          >
+            More Info
+          </button>
+
           <button
             onClick={handlePlaystoreClick}
-            className={`${theme.accent} ${theme.accentText} py-3 px-6 rounded-lg text-center font-medium hover:opacity-90 transition flex-1 text-base shadow-lg`}
+            className="hover:opacity-90 transition flex-shrink-0 flex items-center h-[48px]"
           >
-            Download Android
+            <img src="/images/google-play.png" alt="Get it on Google Play" className="h-full w-auto object-contain" />
           </button>
           
           <button
             onClick={handleAppStoreClick}
-            className={`${theme.accent} ${theme.accentText} py-3 px-6 rounded-lg text-center font-medium hover:opacity-90 transition flex-1 text-base shadow-lg`}
+            className="hover:opacity-90 transition flex-shrink-0 flex items-center h-[48px]"
           >
-            Download iOS
+            <img src="/images/app-store.png" alt="Download on the App Store" className="h-full w-auto object-contain" />
           </button>
         </div>
 
@@ -160,18 +179,7 @@ const JustLogPage = () => {
           </p>
         </div>
 
-        {/* Divider */}
-        <div className={`border-t ${theme.textLight} border-opacity-30 mb-10`}></div>
 
-        {/* Read More Section */}
-        <div className="text-center">
-          <button
-            onClick={handleReadMoreClick}
-            className={`${theme.accent} ${theme.accentText} py-3 px-8 rounded-lg text-center font-medium hover:opacity-90 transition text-base shadow-lg`}
-          >
-            Read More
-          </button>
-        </div>
       </div>
     </div>
   );
